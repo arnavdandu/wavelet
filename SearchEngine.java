@@ -27,14 +27,14 @@ class Handler implements URLHandler {
 
     public String handleRequest(URI url) {
         if (url.getPath().equals("/")) {
-            return output("");
+            return "All previous searches: " + output("");
         } else {
             System.out.println("Path: " + url.getPath());
             if (url.getPath().contains("/add")) {
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) {
                     searches.add(parameters[1]);
-                    return "";
+                    return "Added search.";
                 }
             } else if (url.getPath().contains("/search")) {
                 String[] parameters = url.getQuery().split("=");
