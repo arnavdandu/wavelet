@@ -41,9 +41,21 @@ class Handler implements URLHandler {
                 if (parameters[0].equals("s")) {
                     return output(parameters[1]);
                 }
+            } else if (url.getPath().contains("/remove")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    if(searches.remove(parameters[1])) {
+                        return "Removed " + parameters[1];
+                    } else {
+                        return parameters[1] + " has not been searched.";
+                    }
+                }
+            } else if (url.getPath().contains("/clear")) {
+                searches.clear();
+                return "Cleared searches.";
             }
             return "404 Not Found!";
-        }
+        } 
     }
 }
 
